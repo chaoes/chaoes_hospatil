@@ -21,6 +21,9 @@ public class Examination {
     private Long id;
     private String content;
     private Integer price;
+    private boolean isfinished;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date checkTime;
     @Temporal(TemporalType.DATE)
     private Date creatTime;
     @ManyToOne

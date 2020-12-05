@@ -22,6 +22,7 @@ public class Drug {
     private String drugname;
     private Integer number;
     private Integer price;
+    private boolean isfinished;
     @Temporal(TemporalType.DATE)
     private Date creatDate;
     @ManyToOne
