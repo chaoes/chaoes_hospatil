@@ -21,11 +21,11 @@ public class Examination {
     private Long id;
     private String content;
     private Integer price;
-    private boolean isfinished;
+    private boolean isfinished=false;
     @Temporal(TemporalType.TIMESTAMP)
     private Date checkTime;
     @Temporal(TemporalType.DATE)
-    private Date creatTime;
+    private Date creatTime = new Date(System.currentTimeMillis());
     @ManyToOne
     private Patient patient;
 }

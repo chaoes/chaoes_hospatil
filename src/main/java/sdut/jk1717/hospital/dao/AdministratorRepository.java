@@ -11,4 +11,5 @@ import sdut.jk1717.hospital.po.Administrator;
 
 @Repository
 public interface AdministratorRepository extends JpaRepository<Administrator,Long> {
+    Administrator findByNameAndPassword(String name,String password);
 }

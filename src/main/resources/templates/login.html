@@ -27,7 +27,59 @@
     <!-- Google Font: Source Sans Pro -->
     <link th:href="@{https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700}" rel="stylesheet">
 </head>
-<body>
+<body class="hold-transition login-page">
+<div class="login-box">
+    <div class="login-logo">
+        医院滚心里系统
+    </div>
+    <div class="card">
+        <div class="card-body login-card-body">
+            <form method="post" th:action="@{/login}">
+                <div class="input-group mb-3">
+                    <input type="text" name="username" class="form-control" placeholder="用户名" required="required">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" name="password" class="form-control" placeholder="密码" required="required">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="icheck-primary">
+                            <input type="radio" id="admin" name="usertype" value="admin" required="required">
+                            <label for="admin">
+                                管理员
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="icheck-primary">
+                            <input type="radio" id="doctor" name="usertype" value="doctor" required="required" checked="checked">
+                            <label for="doctor">
+                                医生
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <button type="submit" class="btn btn-block btn-primary">
+                        登录
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
 
 </body>
 </html>

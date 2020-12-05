@@ -22,9 +22,9 @@ public class Drug {
     private String drugname;
     private Integer number;
     private Integer price;
-    private boolean isfinished;
+    private boolean isfinished=false;
     @Temporal(TemporalType.DATE)
-    private Date creatDate;
+    private Date creatDate = new Date(System.currentTimeMillis());
     @ManyToOne
     private Patient patient;
 }

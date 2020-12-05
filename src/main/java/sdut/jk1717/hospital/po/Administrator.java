@@ -25,7 +25,7 @@ public class Administrator {
     private String addr;
     private String avatar;
     @Temporal(TemporalType.DATE)
-    private Date creatDate;
+    private Date creatDate = new Date(System.currentTimeMillis());
     @Temporal(TemporalType.DATE)
     private Date updateDate;
 }

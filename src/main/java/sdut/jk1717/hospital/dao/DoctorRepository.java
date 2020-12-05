@@ -11,4 +11,5 @@ import sdut.jk1717.hospital.po.Doctor;
 
 @Repository
 public interface DoctorRepository extends JpaRepository<Doctor,Long> {
+    Doctor findByNameAndPassword(String name,String password);
 }
