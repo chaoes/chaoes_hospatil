@@ -5,14 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sdut.jk1717.hospital.po.Administrator;
 import sdut.jk1717.hospital.po.Doctor;
 import sdut.jk1717.hospital.service.AdministratorService;
 import sdut.jk1717.hospital.service.DoctorService;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.net.http.HttpRequest;
 
 
 /**
@@ -31,16 +29,18 @@ public class LoginController {
         return "/login.html";
     }
     @PostMapping("/login")
-    public String login(String username, String password, String usertype, Model model, HttpServletRequest httpServletRequest){
+    public String login(String username, String password, String usertype, Model model, HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes){
         if(usertype==null){
+            redirectAttributes.addFlashAttribute("message", "登录异常");
             return "redirect:/login";
         }
         else if(usertype.equals("admin")){
             Administrator administrator = administratorService.check(username,password);
             if(administrator!=null){
-                        httpServletRequest.getSession().setAttribute("username",administrator.getName());
+                httpServletRequest.getSession().setAttribute("username",administrator.getName());
                 return "redirect:/temp";
             }
+            redirectAttributes.addFlashAttribute("message", "登录失败");
             return "redirect:/login";
 
         }
@@ -50,9 +50,11 @@ public class LoginController {
                 httpServletRequest.getSession().setAttribute("username",doctor.getName());
                 return "redirect:/temp";
             }
+            redirectAttributes.addFlashAttribute("message", "登录失败");
             return "redirect:/login";
 
         }
+        redirectAttributes.addFlashAttribute("message", "登录失败");
         return "redirect:/login";
 
     }

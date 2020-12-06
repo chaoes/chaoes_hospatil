@@ -69,17 +69,31 @@
                         </div>
                     </div>
                 </div>
+                <div class="clearfix" style="margin-bottom: 10px;"></div>
                 <div class="row">
                     <button type="submit" class="btn btn-block btn-primary">
                         登录
                     </button>
                 </div>
             </form>
+            <div class="clearfix" style="margin-bottom: 30px;"></div>
+            <div class="alert alert-danger alert-dismissible" th:unless="${#strings.isEmpty(message)}">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h6 th:text="${message}"><i class="icon fas fa-ban"></i> 登录失败!</h6>
+            </div>
         </div>
     </div>
 
 </div>
 
 
+<!-- jQuery -->
+<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+<!-- Bootstrap 4 -->
+<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{/dist/js/adminlte.min.js}"></script>
+<!-- AdminLTE for demo purposes -->
+<script th:src="@{/dist/js/demo.js}"></script>
 </body>
 </html>
