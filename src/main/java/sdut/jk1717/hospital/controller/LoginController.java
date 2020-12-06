@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sdut.jk1717.hospital.po.Administrator;
 import sdut.jk1717.hospital.po.Doctor;
@@ -38,6 +39,7 @@ public class LoginController {
             Administrator administrator = administratorService.check(username,password);
             if(administrator!=null){
                 httpServletRequest.getSession().setAttribute("username",administrator.getName());
+                httpServletRequest.getSession().setAttribute("usertype","admin");
                 return "redirect:/temp";
             }
             redirectAttributes.addFlashAttribute("message", "登录失败");
@@ -48,7 +50,8 @@ public class LoginController {
             Doctor doctor = doctorService.check(username,password);
             if(doctor!=null){
                 httpServletRequest.getSession().setAttribute("username",doctor.getName());
-                return "redirect:/temp";
+                httpServletRequest.getSession().setAttribute("usertype","doctor");
+                return "redirect:/doctor/index";
             }
             redirectAttributes.addFlashAttribute("message", "登录失败");
             return "redirect:/login";
@@ -57,5 +60,10 @@ public class LoginController {
         redirectAttributes.addFlashAttribute("message", "登录失败");
         return "redirect:/login";
 
+    }
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest httpServletRequest){
+        httpServletRequest.getSession().removeAttribute("username");
+        return "redirect://login";
     }
 }
