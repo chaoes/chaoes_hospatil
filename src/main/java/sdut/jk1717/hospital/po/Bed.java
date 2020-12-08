@@ -1,7 +1,7 @@
 package sdut.jk1717.hospital.po;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 import javax.persistence.*;
 
@@ -19,6 +19,4 @@ public class Bed {
     @GeneratedValue
     private Long id;
     private Integer number;
-    @OneToOne(mappedBy = "bed")
-    private Patient patient;
 }

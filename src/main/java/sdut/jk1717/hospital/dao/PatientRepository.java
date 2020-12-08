@@ -1,7 +1,10 @@
 package sdut.jk1717.hospital.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import sdut.jk1717.hospital.po.Doctor;
 import sdut.jk1717.hospital.po.Patient;
+
+import java.util.List;
 
 /**
  * @auther:chaoe

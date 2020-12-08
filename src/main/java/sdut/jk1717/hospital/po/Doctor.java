@@ -2,11 +2,10 @@ package sdut.jk1717.hospital.po;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @auther:chaoe
@@ -30,6 +29,7 @@ public class Doctor {
     private Date creatDate = new Date(System.currentTimeMillis());
     @Temporal(TemporalType.DATE)
     private Date updateDate;
-    @OneToMany(mappedBy = "doctor")
-    private List<Patient> patients = new ArrayList<>();
+    @OrderColumn
+    @OneToMany(fetch = FetchType.EAGER)
+    private Set<Patient> patients = new HashSet<>();
 }

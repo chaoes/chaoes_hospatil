@@ -15,8 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 public class DoctorInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        System.out.println("-------------------------------------------------");
         if(request.getSession().getAttribute("username")==null||!request.getSession().getAttribute("usertype").equals("doctor")){
-            response.sendRedirect("/login");
+            System.out.println("-------------------------------------------------");
+            response.sendRedirect("/");
+            return false;
         }
         return true;
     }

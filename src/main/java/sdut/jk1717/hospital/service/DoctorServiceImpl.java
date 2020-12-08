@@ -2,6 +2,7 @@ package sdut.jk1717.hospital.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import sdut.jk1717.hospital.dao.DoctorRepository;
 import sdut.jk1717.hospital.po.Doctor;
 
@@ -14,8 +15,15 @@ import sdut.jk1717.hospital.po.Doctor;
 public class DoctorServiceImpl implements DoctorService{
     @Autowired
     DoctorRepository doctorRepository;
+    @Transactional
     @Override
     public Doctor check(String name, String password) {
         return doctorRepository.findByNameAndPassword(name,password);
+    }
+
+    @Transactional
+    @Override
+    public Doctor findByName(String name) {
+        return doctorRepository.findByName(name);
     }
 }

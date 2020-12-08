@@ -25,6 +25,4 @@ public class Drug {
     private boolean isfinished=false;
     @Temporal(TemporalType.DATE)
     private Date creatDate = new Date(System.currentTimeMillis());
-    @ManyToOne
-    private Patient patient;
 }
