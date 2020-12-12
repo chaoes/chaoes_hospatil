@@ -33,7 +33,7 @@ public class DoctorController {
         String name = httpServletRequest.getSession().getAttribute("username").toString();
         Doctor doctor = doctorService.findByName(name);
         System.out.println(doctor.toString());
-        model.addAttribute("patients",doctor.getPatients());
+        model.addAttribute("patients",patientService.findPatientsByDoctorId(doctor.getId()));
         return "/doctorindex.html";
     }
 }

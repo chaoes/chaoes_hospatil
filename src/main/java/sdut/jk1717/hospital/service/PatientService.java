@@ -12,4 +12,5 @@ import java.util.List;
 
 
 public interface PatientService {
+    List<Patient> findPatientsByDoctorId(Long id);
 }

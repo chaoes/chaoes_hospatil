@@ -31,10 +31,6 @@ public class Patient {
     private Date updateDate;
     @OneToOne(fetch = FetchType.EAGER)
     private Bed bed;
-    @OrderColumn
-    @OneToMany(fetch = FetchType.EAGER)
-    private Set<Drug> drugs = new HashSet<>();
-    @OrderColumn
-    @OneToMany(fetch = FetchType.EAGER)
-    private Set<Examination> examinations = new HashSet<>();
+    @ManyToOne
+    private Doctor doctor;
 }

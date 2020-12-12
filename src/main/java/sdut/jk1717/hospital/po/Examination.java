@@ -26,4 +26,6 @@ public class Examination {
     private Date checkTime;
     @Temporal(TemporalType.DATE)
     private Date creatTime = new Date(System.currentTimeMillis());
+    @ManyToOne
+    private Patient patient;
 }

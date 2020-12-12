@@ -18,4 +18,9 @@ import java.util.List;
 public class PatientServiceImpl implements PatientService{
     @Autowired
     PatientRepository patientRepository;
+
+    @Override
+    public List<Patient> findPatientsByDoctorId(Long id) {
+        return patientRepository.findAllByDoctor_Id(id);
+    }
 }

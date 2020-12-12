@@ -29,7 +29,4 @@ public class Doctor {
     private Date creatDate = new Date(System.currentTimeMillis());
     @Temporal(TemporalType.DATE)
     private Date updateDate;
-    @OrderColumn
-    @OneToMany(fetch = FetchType.EAGER)
-    private Set<Patient> patients = new HashSet<>();
 }
