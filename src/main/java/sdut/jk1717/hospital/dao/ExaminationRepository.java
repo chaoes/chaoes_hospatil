@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import sdut.jk1717.hospital.po.Examination;
 
+import java.util.List;
+
 /**
  * @auther:chaoe
  * @date:2020/12/5
@@ -11,4 +13,5 @@ import sdut.jk1717.hospital.po.Examination;
 
 @Repository
 public interface ExaminationRepository extends JpaRepository<Examination,Long> {
+    List<Examination> findAllByPatient_Id(Long id);
 }

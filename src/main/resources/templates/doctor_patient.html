@@ -59,10 +59,10 @@
         <div class="content">
             <div class="container"></div>
             <div class="row">
-                <div class="col-12">
+                <div class="col-4">
                     <div class="card">
                         <div class="card-header">
-                            <div class="card-title text-center" th:text="${patient.name}">
+                            <div class="card-title" th:text="'病人'">
                                 标题
                             </div>
                         </div>
@@ -101,6 +101,37 @@
                                     </a>
                                 </form>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">药单</div>
+                        </div>
+                        <div class="card-body pre-scrollable">
+                            <ul class="list-group">
+                                <li class="list-group-item" th:each="d:${drugs}">
+                                    <div class="card-text" th:text="'名称：'+${d.drugname}"></div>
+                                    <div class="card-text" th:text="'数目：'+${d.number}+'份'"></div>
+                                    <div class="card-text" th:text="'价格：'+${d.price}+'rmb'"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">检测</div>
+                        </div>
+                        <div class="card-body pre-scrollable">
+                            <ul class="list-group">
+                                <li class="list-group-item" th:each="e:${exams}">
+                                    <div class="card-text" th:text="'内容：'+${e.content}"></div>
+                                    <div class="card-text" th:text="'价格：'+${e.price}+'rmb'"></div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>

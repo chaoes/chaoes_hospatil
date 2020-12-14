@@ -3,8 +3,10 @@ package sdut.jk1717.hospital.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import sdut.jk1717.hospital.dao.DrugRepository;
 import sdut.jk1717.hospital.dao.PatientRepository;
 import sdut.jk1717.hospital.po.Doctor;
+import sdut.jk1717.hospital.po.Drug;
 import sdut.jk1717.hospital.po.Patient;
 
 import java.util.List;
@@ -18,6 +20,7 @@ import java.util.List;
 public class PatientServiceImpl implements PatientService{
     @Autowired
     PatientRepository patientRepository;
+    DrugRepository drugRepository;
 
     @Override
     public List<Patient> findPatientsByDoctorId(Long id) {
