@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>模板</title>
+    <title th:text="'病人'+${patient.name}+'详情'">病人</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -59,16 +59,47 @@
         <div class="content">
             <div class="container"></div>
             <div class="row">
-                <div class="col-10">
+                <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <div class="card-title">
+                            <div class="card-title text-center" th:text="${patient.name}">
                                 标题
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="card-text">
-                                内容
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label for="name">姓名</label>
+                                        <input th:value="${patient.name}" type="text" readonly="readonly" id="name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">电话</label>
+                                        <input th:if="${patient.phone}" th:value="${patient.phone}" type="phone" readonly="readonly" id="phone">
+                                        <input th:if="!${patient.phone}" th:value="无信息" type="phone" readonly="readonly" id="phone">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addr">住址</label>
+                                        <input th:if="${patient.addr}" th:value="${patient.addr}" type="text" readonly="readonly" id="addr">
+                                        <input th:if="!${patient.addr}" th:value="无信息" type="text" readonly="readonly" id="addr">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="bed">床位</label>
+                                        <input th:if="${patient.bed}" th:value="${patient.bed.number}" type="text" readonly="readonly" id="bed">
+                                        <input th:if="!${patient.bed}" th:value="未分配" type="text" readonly="readonly" id="bed">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addr">负责医生</label>
+                                        <input th:if="${patient.doctor}" th:value="${patient.doctor.name}" type="text" readonly="readonly" id="addr">
+                                        <input th:if="!${patient.doctor}" th:value="无信息" type="text" readonly="readonly" id="addr">
+                                    </div>
+                                    <a th:href="@{'/doctor/patient/adddrug/'+${patient.id}}">
+                                        <button class="btn btn-primary">开药</button>
+                                    </a>
+                                    <a th:href="@{'/doctor/patient/addexam/'+${patient.id}}">
+                                        <button class="btn btn-primary">检测</button>
+                                    </a>
+                                </form>
                             </div>
                         </div>
                     </div>

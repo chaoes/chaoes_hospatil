@@ -75,6 +75,7 @@
                                         <th>床位</th>
                                         <th>负责医生</th>
                                         <th>电话</th>
+                                        <td>操作</td>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -84,6 +85,13 @@
                                             <td th:unless="${p.bed}!=null" th:text="未分配"></td>
                                             <td th:text="${session.username}"></td>
                                             <td th:text="${p.phone}"></td>
+                                            <td>
+                                                <a th:href="@{'/doctor/patient/'+${p.id}}">
+                                                    <button class="btn-primary btn">
+                                                        <i class="fa fa-folder"></i>
+                                                    </button>
+                                                </a>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
