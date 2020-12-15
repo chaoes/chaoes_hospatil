@@ -50,6 +50,14 @@
 
                 </ul>
             </div>
+            <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+                <li class="nav-link" >
+                    <a href="/doctor/index" th:text="${session.username}"></a>
+                </li>
+                <li class="nav-link" >
+                    <a href="/logout" th:text="'注销'"></a>
+                </li>
+            </ul>
         </div>
 
     </nav>

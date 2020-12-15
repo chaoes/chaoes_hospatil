@@ -50,6 +50,14 @@
 
                 </ul>
             </div>
+            <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+                <li class="nav-link" >
+                    <a href="/doctor/index" th:text="${session.username}"></a>
+                </li>
+                <li class="nav-link" >
+                    <a href="/logout" th:text="'注销'"></a>
+                </li>
+            </ul>
         </div>
 
     </nav>
@@ -112,6 +120,7 @@
                         <div class="card-body pre-scrollable">
                             <ul class="list-group">
                                 <li class="list-group-item" th:each="d:${drugs}">
+                                    <div class="text-right card-text text-red" th:text="${#dates.format(d.creatDate,'dd/MM/yyyy')}" ></div>
                                     <div class="card-text" th:text="'名称：'+${d.drugname}"></div>
                                     <div class="card-text" th:text="'数目：'+${d.number}+'份'"></div>
                                     <div class="card-text" th:text="'价格：'+${d.price}+'rmb'"></div>
@@ -128,6 +137,7 @@
                         <div class="card-body pre-scrollable">
                             <ul class="list-group">
                                 <li class="list-group-item" th:each="e:${exams}">
+                                    <div class="text-right card-text text-red" th:text="${#dates.format(e.creatTime,'dd/MM/yyyy')}"></div>
                                     <div class="card-text" th:text="'内容：'+${e.content}"></div>
                                     <div class="card-text" th:text="'价格：'+${e.price}+'rmb'"></div>
                                 </li>
