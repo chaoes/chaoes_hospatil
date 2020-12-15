@@ -11,4 +11,5 @@ import sdut.jk1717.hospital.po.Bed;
 
 @Repository
 public interface BedRepository extends JpaRepository<Bed,Long> {
+    long count();
 }

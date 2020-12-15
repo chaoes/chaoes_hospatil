@@ -40,7 +40,8 @@ public class LoginController {
             if(administrator!=null){
                 httpServletRequest.getSession().setAttribute("username",administrator.getName());
                 httpServletRequest.getSession().setAttribute("usertype","admin");
-                return "redirect:/temp";
+                httpServletRequest.getSession().setAttribute("userid",administrator.getId());
+                return "redirect:/admin/index";
             }
             redirectAttributes.addFlashAttribute("message", "登录失败");
             return "redirect:/login";

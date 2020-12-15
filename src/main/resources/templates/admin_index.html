@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>医院住院部管理系统-医生</title>
+    <title>医院住院部管理系统-管理员</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -65,47 +65,58 @@
         <div class="content-header">
         </div>
         <div class="content">
-            <div class="container"></div>
+            <div class="container-fluid"></div>
             <div class="row">
-                <div class="col-10">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="card-title" th:text="'为病人'+${patient.name}+'检测'">
-                                标题
-                            </div>
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <h3 th:text="${patientCount}">-1</h3>
+                            <p>患者数量</p>
                         </div>
-                        <div class="card-body">
-                            <div class="card-text">
-                                <form role="form" method="post" th:action="@{/doctor/addexam}">
-                                    <div class="input-group">
-                                        <input class="form-control" required="required" type="text" size="24" id="patientid" name="patientid" readonly="readonly" th:value="${patient.id}" hidden="hidden">
-                                    </div>
-                                    <row>
-                                        <div class="form-group">
-                                            <label for="content">检测项目</label>
-                                            <input class="form-control" required="required" type="text" size="24" id="content" name="content">
-                                        </div>
-                                    </row>
-                                    <row>
-                                        <div class="form-group">
-                                            <label for="checkdate">检测时间</label>
-                                            <input class="form-control" required="required" type="date"  th:min="${#dates.format(new java.util.Date().getTime(),'yyyy-MM-dd')}" name="checkdate" id="checkdate">
-                                        </div>
-                                    </row>
-                                    <row>
-                                        <div class="form-group">
-                                            <label for="price">价钱</label>
-                                            <input class="form-control" required="required" type="number" name="price" id="price">
-                                        </div>
-                                    </row>
-                                    <row>
-                                        <div class="form-group">
-                                            <input type="submit" class="form-control btn btn-primary" value="提交">
-                                        </div>
-                                    </row>
-                                </form>
-                            </div>
+                        <div class="icon">
+                            <i class="ion ion-android-sad"></i>
                         </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3 th:text="${doctorCount}">-1</h3>
+                            <p>医生数量</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-android-happy"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <h3 th:text="${drugCount}">-1</h3>
+                            <p>今日药单</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-medkit"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-blue">
+                        <div class="inner">
+                            <h3 th:text="${examCount}">-1</h3>
+                            <p>今日检测</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-heart"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>

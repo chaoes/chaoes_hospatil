@@ -31,4 +31,9 @@ public class PatientServiceImpl implements PatientService{
     public Patient findById(Long id) {
         return (Patient) patientRepository.findById(id).get();
     }
+
+    @Override
+    public long count() {
+        return patientRepository.count();
+    }
 }

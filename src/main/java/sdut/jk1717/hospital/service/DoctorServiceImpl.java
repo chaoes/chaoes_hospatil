@@ -21,9 +21,12 @@ public class DoctorServiceImpl implements DoctorService{
         return doctorRepository.findByNameAndPassword(name,password);
     }
 
-    @Transactional
     @Override
     public Doctor findByName(String name) {
         return doctorRepository.findByName(name);
+    }
+    @Override
+    public long count(){
+        return doctorRepository.count();
     }
 }

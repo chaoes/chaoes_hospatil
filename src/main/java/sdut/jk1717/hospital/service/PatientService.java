@@ -15,4 +15,5 @@ import java.util.List;
 public interface PatientService {
     List<Patient> findPatientsByDoctorId(Long id);
     Patient findById(Long id);
+    long count();
 }

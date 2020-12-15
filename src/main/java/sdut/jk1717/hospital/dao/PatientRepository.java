@@ -14,4 +14,5 @@ import java.util.List;
 
 public interface PatientRepository extends JpaRepository<Patient,Long> {
     List<Patient> findAllByDoctor_Id(Long id);
+    long count();
 }

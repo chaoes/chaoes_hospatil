@@ -6,6 +6,7 @@ import sdut.jk1717.hospital.dao.ExaminationRepository;
 import sdut.jk1717.hospital.po.Examination;
 import sdut.jk1717.hospital.po.Patient;
 
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -26,5 +27,15 @@ public class ExaminationServiceImpl implements ExaminationService{
     public Examination save(Examination examination, Patient patient) {
         examination.setPatient(patient);
         return examinationRepository.save(examination);
+    }
+
+    @Override
+    public List<Examination> findAllByDate(Date date) {
+        return examinationRepository.findAllByCreatTime(date);
+    }
+
+    @Override
+    public int countAllByDate(Date date) {
+        return examinationRepository.countAllByCreatTime(date);
     }
 }

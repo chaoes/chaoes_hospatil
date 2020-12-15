@@ -11,4 +11,5 @@ import sdut.jk1717.hospital.po.Doctor;
 public interface DoctorService {
     Doctor check(String name,String password);
     Doctor findByName(String name);
+    long count();
 }

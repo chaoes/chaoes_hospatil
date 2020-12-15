@@ -4,8 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import sdut.jk1717.hospital.po.Doctor;
 
-import java.util.List;
-
 /**
  * @auther:chaoe
  * @date:2020/12/5
@@ -15,4 +13,5 @@ import java.util.List;
 public interface DoctorRepository extends JpaRepository<Doctor,Long> {
     Doctor findByNameAndPassword(String name,String password);
     Doctor findByName(String name);
+    long count();
 }
