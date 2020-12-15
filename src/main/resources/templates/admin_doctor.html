@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>医院住院部管理系统-医生</title>
+    <title>医院住院部管理系统</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -69,9 +69,9 @@
             <div class="row">
                 <div class="col-10">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header" align="justify">
                             <div class="card-title">
-                                我的病人
+                                医生管理
                             </div>
                         </div>
                         <div class="card-body">
@@ -80,52 +80,55 @@
                                     <thead>
                                     <tr>
                                         <th>姓名</th>
-                                        <th>床位</th>
-                                        <th>负责医生</th>
                                         <th>电话</th>
-                                        <td>操作</td>
+                                        <th>地址</th>
+                                        <th>加入时间</th>
+                                        <th>操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="p:${patients}">
-                                            <td th:text="${p.name}"></td>
-                                            <td th:if="${p.bed}!=null" th:text="${p.bed.number}"></td>
-                                            <td th:unless="${p.bed}!=null" th:text="未分配"></td>
-                                            <td th:text="${session.username}"></td>
-                                            <td th:text="${p.phone}"></td>
+                                        <tr th:each="d:${doctors}">
+                                            <td th:text="${d.name}"></td>
+                                            <td th:text="${d.phone}"></td>
+                                            <td th:text="${d.addr}"></td>
+                                            <td th:text="${#dates.format(d.creatDate,'yyyy-MM-dd')}"></td>
                                             <td>
-                                                <a th:href="@{'/doctor/patient/'+${p.id}}">
-                                                    <button class="btn-primary btn">
-                                                        <i class="fa fa-folder"></i>
-                                                    </button>
-                                                </a>
+                                                <a th:href="@{'/admin/doctoredit/'+d.id}" class="btn btn-primary">修改</a>
+                                                <a th:href="@{'/admin/doctordel/'+d.id}" class="btn btn-warning">删除</a>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+                        <div class="card-footer">
+                            <div class="card-comment">
+                                <a th:href="@{/admin/doctoradd}" class="btn btn-primary">新加医生</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+            </div>
         </div>
     </div>
 </div>
 
 
+
 <!-- jQuery -->
-<script th:src="@{/plugins/jquery/jquery.js}"></script>
+<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
 <!-- Bootstrap 4 -->
-<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.js}"></script>
+<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
 <!-- AdminLTE App -->
-<script th:src="@{/dist/js/adminlte.js}"></script>
+<script th:src="@{/dist/js/adminlte.min.js}"></script>
+<!-- AdminLTE for demo purposes -->
+<script th:src="@{/dist/js/demo.js}"></script>
 <!-- DataTables -->
 <script th:src="@{/plugins/datatables/jquery.dataTables.min.js}"></script>
 <script th:src="@{/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
 <script th:src="@{/plugins/datatables-responsive/js/dataTables.responsive.min.js}"></script>
 <script th:src="@{/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
-<!-- page script -->
 <script>
     $(function () {
         $('#table1').DataTable({

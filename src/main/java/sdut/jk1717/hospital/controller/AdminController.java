@@ -3,8 +3,10 @@ package sdut.jk1717.hospital.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import sdut.jk1717.hospital.Util.DateUtil;
+import sdut.jk1717.hospital.po.Doctor;
 import sdut.jk1717.hospital.po.Drug;
 import sdut.jk1717.hospital.po.Examination;
 import sdut.jk1717.hospital.service.DoctorService;
@@ -45,5 +47,12 @@ public class AdminController {
         model.addAttribute("drugCount",newDrugCount);
         model.addAttribute("examCount",newExamCount);
         return "/admin_index.html";
+    }
+    @GetMapping("/admin/doctor")
+    public String doctorList(Model model){
+        List<Doctor> doctors = doctorService.findAll();
+        model.addAttribute("doctors",doctors);
+        return "admin_doctor.html";
+
     }
 }

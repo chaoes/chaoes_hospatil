@@ -6,6 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 import sdut.jk1717.hospital.dao.DoctorRepository;
 import sdut.jk1717.hospital.po.Doctor;
 
+import java.util.List;
+
 /**
  * @auther:chaoe
  * @date:2020/12/5
@@ -28,5 +30,10 @@ public class DoctorServiceImpl implements DoctorService{
     @Override
     public long count(){
         return doctorRepository.count();
+    }
+
+    @Override
+    public List<Doctor> findAll() {
+        return doctorRepository.findAll();
     }
 }
