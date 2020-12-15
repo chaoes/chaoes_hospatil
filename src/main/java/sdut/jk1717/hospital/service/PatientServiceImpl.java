@@ -20,7 +20,7 @@ import java.util.List;
 public class PatientServiceImpl implements PatientService{
     @Autowired
     PatientRepository patientRepository;
-    DrugRepository drugRepository;
+
 
     @Override
     public List<Patient> findPatientsByDoctorId(Long id) {

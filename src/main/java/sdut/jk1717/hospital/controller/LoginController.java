@@ -51,6 +51,7 @@ public class LoginController {
             if(doctor!=null){
                 httpServletRequest.getSession().setAttribute("username",doctor.getName());
                 httpServletRequest.getSession().setAttribute("usertype","doctor");
+                httpServletRequest.getSession().setAttribute("userid",doctor.getId());
                 return "redirect:/doctor/index";
             }
             redirectAttributes.addFlashAttribute("message", "登录失败");

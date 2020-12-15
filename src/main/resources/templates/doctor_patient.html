@@ -66,8 +66,14 @@
         </div>
         <div class="content">
             <div class="container"></div>
+            <row>
+                <div class="alert alert-default-primary alert-dismissible" th:unless="${#strings.isEmpty(message)}">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h6 th:text="${message}"><i class="icon fas fa-ban"></i> 提示!</h6>
+                </div>
+            </row>
             <div class="row">
-                <div class="col-4">
+                <div class="col-md-4 col-sm-12">
                     <div class="card">
                         <div class="card-header">
                             <div class="card-title" th:text="'病人'">
@@ -83,7 +89,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="phone">电话</label>
-                                        <input th:if="${patient.phone}" th:value="${patient.phone}" type="phone" readonly="readonly" id="phone">
+                                        <input th:if="${patient.phone}" th:value="${patient.phone}" type="tel" readonly="readonly" id="phone">
                                         <input th:if="!${patient.phone}" th:value="无信息" type="phone" readonly="readonly" id="phone">
                                     </div>
                                     <div class="form-group">
@@ -101,23 +107,20 @@
                                         <input th:if="${patient.doctor}" th:value="${patient.doctor.name}" type="text" readonly="readonly" id="addr">
                                         <input th:if="!${patient.doctor}" th:value="无信息" type="text" readonly="readonly" id="addr">
                                     </div>
-                                    <a th:href="@{'/doctor/patient/adddrug/'+${patient.id}}">
-                                        <button class="btn btn-primary">开药</button>
-                                    </a>
-                                    <a th:href="@{'/doctor/patient/addexam/'+${patient.id}}">
-                                        <button class="btn btn-primary">检测</button>
-                                    </a>
+                                    <a class="btn btn-primary" th:href="@{'/doctor/adddrug/'+${patient.id}}">开药</a>
+                                    <a class="btn btn-primary" th:href="@{'/doctor/addexam/'+${patient.id}}">检测</a>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-md-4 col-sm-12">
                     <div class="card">
                         <div class="card-header">
                             <div class="card-title">药单</div>
                         </div>
                         <div class="card-body pre-scrollable">
+                            <div class="card-text" th:if="${#lists.isEmpty(drugs)}" th:text="暂无"></div>
                             <ul class="list-group">
                                 <li class="list-group-item" th:each="d:${drugs}">
                                     <div class="text-right card-text text-red" th:text="${#dates.format(d.creatDate,'dd/MM/yyyy')}" ></div>
@@ -129,12 +132,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-md-4 col-sm-12">
                     <div class="card">
                         <div class="card-header">
                             <div class="card-title">检测</div>
                         </div>
                         <div class="card-body pre-scrollable">
+                            <div class="card-text" th:if="${#lists.isEmpty(exams)}" th:text="暂无"></div>
                             <ul class="list-group">
                                 <li class="list-group-item" th:each="e:${exams}">
                                     <div class="text-right card-text text-red" th:text="${#dates.format(e.creatTime,'dd/MM/yyyy')}"></div>

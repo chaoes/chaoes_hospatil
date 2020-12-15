@@ -70,39 +70,40 @@
                 <div class="col-10">
                     <div class="card">
                         <div class="card-header">
-                            <div class="card-title">
-                                我的病人
+                            <div class="card-title" th:text="'为病人'+${patient.name}+'开药'">
+                                标题
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="card-text">
-                                <table id="table1" class="table table-bordered table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th>姓名</th>
-                                        <th>床位</th>
-                                        <th>负责医生</th>
-                                        <th>电话</th>
-                                        <td>操作</td>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr th:each="p:${patients}">
-                                            <td th:text="${p.name}"></td>
-                                            <td th:if="${p.bed}!=null" th:text="${p.bed.number}"></td>
-                                            <td th:unless="${p.bed}!=null" th:text="未分配"></td>
-                                            <td th:text="${session.username}"></td>
-                                            <td th:text="${p.phone}"></td>
-                                            <td>
-                                                <a th:href="@{'/doctor/patient/'+${p.id}}">
-                                                    <button class="btn-primary btn">
-                                                        <i class="fa fa-folder"></i>
-                                                    </button>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <form role="form" method="post" th:action="@{/doctor/adddrug}">
+                                    <div class="input-group">
+                                        <input class="form-control" required="required" type="text" size="24" id="patientid" name="patientid" readonly="readonly" th:value="${patient.id}" hidden="hidden">
+                                    </div>
+                                    <row>
+                                        <div class="form-group">
+                                            <label for="drugname">药物名称</label>
+                                            <input class="form-control" required="required" type="text" size="24" id="drugname" name="drugname">
+                                        </div>
+                                    </row>
+                                    <row>
+                                        <div class="form-group">
+                                            <label for="number">数目</label>
+                                            <input class="form-control" required="required" type="number" max="50" min="1" name="number" id="number">
+                                        </div>
+                                    </row>
+                                    <row>
+                                        <div class="form-group">
+                                            <label for="price">价钱</label>
+                                            <input class="form-control" required="required" type="number" name="price" id="price">
+                                        </div>
+                                    </row>
+                                    <row>
+                                        <div class="form-group">
+                                            <input type="submit" class="form-control btn btn-primary" value="提交">
+                                        </div>
+                                    </row>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -113,39 +114,19 @@
 </div>
 
 
+
 <!-- jQuery -->
-<script th:src="@{/plugins/jquery/jquery.js}"></script>
+<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
 <!-- Bootstrap 4 -->
-<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.js}"></script>
+<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
 <!-- AdminLTE App -->
-<script th:src="@{/dist/js/adminlte.js}"></script>
+<script th:src="@{/dist/js/adminlte.min.js}"></script>
+<!-- AdminLTE for demo purposes -->
+<script th:src="@{/dist/js/demo.js}"></script>
 <!-- DataTables -->
 <script th:src="@{/plugins/datatables/jquery.dataTables.min.js}"></script>
 <script th:src="@{/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
 <script th:src="@{/plugins/datatables-responsive/js/dataTables.responsive.min.js}"></script>
 <script th:src="@{/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
-<!-- page script -->
-<script>
-    $(function () {
-        $('#table1').DataTable({
-            "paging": true,
-            "emptyTable": "您没有病人了",
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-            "search": "搜索",
-            "infoEmpty": "无记录",
-            "paginate": {
-                "first": "首页",
-                "previous": "上一页",
-                "next": "下一页",
-                "last": "尾页"
-            }
-        });
-    });
-</script>
 </body>
 </html>
