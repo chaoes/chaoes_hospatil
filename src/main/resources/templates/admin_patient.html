@@ -65,58 +65,44 @@
         <div class="content-header">
         </div>
         <div class="content">
-            <div class="container-fluid"></div>
-            <div class="row">
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-yellow">
-                        <div class="inner">
-                            <h3 th:text="${patientCount}">-1</h3>
-                            <p>患者数量</p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-10">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    病人
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-text">
+                                    <table id="table1" class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>姓名</th>
+                                            <th>床位</th>
+                                            <th>负责医生</th>
+                                            <th>电话</th>
+                                            <td>操作</td>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="p:${patients}">
+                                            <td th:text="${p.name}"></td>
+                                            <td th:if="${p.bed}!=null" th:text="${p.bed.number}"></td>
+                                            <td th:unless="${p.bed}!=null" th:text="未分配"></td>
+                                            <td th:text="${session.username}"></td>
+                                            <td th:text="${p.phone}"></td>
+                                            <td>
+                                                <a href="">
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                        <div class="icon">
-                            <i class="ion ion-android-sad"></i>
-                        </div>
-                        <a th:href="@{/admin/patient}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-info">
-                        <div class="inner">
-                            <h3 th:text="${doctorCount}">-1</h3>
-                            <p>医生数量</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-android-happy"></i>
-                        </div>
-                        <a th:href="@{/admin/doctor}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-red">
-                        <div class="inner">
-                            <h3 th:text="${drugCount}">-1</h3>
-                            <p>今日药单</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-medkit"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-blue">
-                        <div class="inner">
-                            <h3 th:text="${examCount}">-1</h3>
-                            <p>今日检测</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-heart"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -125,19 +111,39 @@
 </div>
 
 
-
 <!-- jQuery -->
-<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+<script th:src="@{/plugins/jquery/jquery.js}"></script>
 <!-- Bootstrap 4 -->
-<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.js}"></script>
 <!-- AdminLTE App -->
-<script th:src="@{/dist/js/adminlte.min.js}"></script>
-<!-- AdminLTE for demo purposes -->
-<script th:src="@{/dist/js/demo.js}"></script>
+<script th:src="@{/dist/js/adminlte.js}"></script>
 <!-- DataTables -->
 <script th:src="@{/plugins/datatables/jquery.dataTables.min.js}"></script>
 <script th:src="@{/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
 <script th:src="@{/plugins/datatables-responsive/js/dataTables.responsive.min.js}"></script>
 <script th:src="@{/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
+<!-- page script -->
+<script>
+    $(function () {
+        $('#table1').DataTable({
+            "paging": true,
+            "emptyTable": "您没有病人了",
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+            "search": "搜索",
+            "infoEmpty": "无记录",
+            "paginate": {
+                "first": "首页",
+                "previous": "上一页",
+                "next": "下一页",
+                "last": "尾页"
+            }
+        });
+    });
+</script>
 </body>
 </html>

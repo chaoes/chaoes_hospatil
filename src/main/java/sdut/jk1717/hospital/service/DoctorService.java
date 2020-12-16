@@ -15,4 +15,8 @@ public interface DoctorService {
     Doctor findByName(String name);
     long count();
     List<Doctor> findAll();
+    Doctor addOne(Doctor doctor);
+    Doctor findById(Long id);
+    Doctor update(Doctor doctor);
+    boolean deleteById(Long id);
 }

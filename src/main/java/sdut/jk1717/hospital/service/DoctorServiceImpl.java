@@ -3,6 +3,8 @@ package sdut.jk1717.hospital.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import sdut.jk1717.hospital.Util.DateUtil;
+import sdut.jk1717.hospital.Util.PwdUtil;
 import sdut.jk1717.hospital.dao.DoctorRepository;
 import sdut.jk1717.hospital.po.Doctor;
 
@@ -20,7 +22,7 @@ public class DoctorServiceImpl implements DoctorService{
     @Transactional
     @Override
     public Doctor check(String name, String password) {
-        return doctorRepository.findByNameAndPassword(name,password);
+        return doctorRepository.findByNameAndPassword(name, PwdUtil.md5(password));
     }
 
     @Override
@@ -35,5 +37,35 @@ public class DoctorServiceImpl implements DoctorService{
     @Override
     public List<Doctor> findAll() {
         return doctorRepository.findAll();
+    }
+
+    @Override
+    public Doctor addOne(Doctor doctor) {
+        if(!doctor.getPassword().isEmpty()){
+            doctor.setPassword(PwdUtil.md5(doctor.getPassword()));
+        }
+        return doctorRepository.save(doctor);
+    }
+
+    @Override
+    public Doctor findById(Long id) {
+        return doctorRepository.findById(id).get();
+    }
+
+    @Override
+    public Doctor update(Doctor doctor) {
+        doctor.setUpdateDate(DateUtil.getTodayDate());
+        return doctorRepository.save(doctor);
+    }
+
+    @Override
+    public boolean deleteById(Long id) {
+        try {
+            doctorRepository.deleteById(id);
+        }catch (Exception e){
+            System.out.println("删除id:" + id + "失败");
+            return false;
+        }
+        return true;
     }
 }

@@ -36,4 +36,9 @@ public class PatientServiceImpl implements PatientService{
     public long count() {
         return patientRepository.count();
     }
+
+    @Override
+    public List<Patient> findAll() {
+        return patientRepository.findAll();
+    }
 }
