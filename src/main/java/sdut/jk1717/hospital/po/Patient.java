@@ -1,10 +1,13 @@
 package sdut.jk1717.hospital.po;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -16,8 +19,7 @@ import java.util.*;
 @Table(name = "patient")
 @NoArgsConstructor
 @Data
-@Proxy(lazy = false)
-public class Patient {
+public class Patient implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
@@ -29,8 +31,15 @@ public class Patient {
     private Date creatDate = new Date(System.currentTimeMillis());
     @Temporal(TemporalType.DATE)
     private Date updateDate;
-    @OneToOne(fetch = FetchType.EAGER)
+    @JsonIgnoreProperties({"patient"})
+    @OneToOne
     private Bed bed;
     @ManyToOne
     private Doctor doctor;
+    @JsonIgnore
+    @OneToMany(mappedBy = "patient")
+    private Set<Drug> drugs = new HashSet<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "patient")
+    private Set<Examination> examinations = new HashSet<>();
 }

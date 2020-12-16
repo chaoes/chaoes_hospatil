@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -15,7 +16,7 @@ import java.util.Date;
 @Table(name = "administrator")
 @Data
 @NoArgsConstructor
-public class Administrator {
+public class Administrator implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
