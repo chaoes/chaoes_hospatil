@@ -67,11 +67,41 @@
         <div class="content">
             <div class="container">
                 <div class="row">
-                    <div class="col-10">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div th:text="${doctor.name}" class="card-title">
+                                    医生
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-text">
+                                    <form role="form" method="post" action="/admin/doctoredit">
+                                        <div class="form-group">
+                                            <input th:value="${doctor.id}" class="form-control" type="number" required="required" name="id" id="id" readonly="readonly" hidden="hidden">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name">姓名</label>
+                                            <input th:value="${doctor.name}" readonly="readonly" class="form-control" type="text" required="required" name="name" id="name" placeholder="姓名">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="phone">电话</label>
+                                            <input th:value="${doctor.phone}" readonly="readonly" class="form-control" type="tel" required pattern="^(0|86|17951)?(13[0-9]|15[012356789]|17[0678]|18[0-9]|14[57])[0-9]{8}" name="phone" id="phone" placeholder="电话">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="addr">地址</label>
+                                            <textarea th:text="${doctor.addr}" readonly="readonly" name="addr" required="required" id="addr" class="form-control"></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-title">
-                                    病人
+                                    负责病人
                                 </div>
                             </div>
                             <div class="card-body">
@@ -95,18 +125,14 @@
                                             <td th:text="${p.phone}"></td>
                                             <td>
                                                 <a class="btn btn-primary" th:href="@{'/admin/patientedit/'+${p.id}}">编辑</a>
-                                                <a class="btn btn-secondary" th:href="@{'/admin/patientadd/'+${p.id}}">添加</a>
-                                                <a class="btn btn-light" th:href="@{'/admin/patientset/'+${p.id}}">分配</a>
+                                                <a class="btn btn-secondary" th:href="@{'/admin/patientdel/'+${p.id}}">添加</a>
+                                                <a class="btn btn-warning" th:href="@{'/admin/patientset/'+${p.id}}">分配</a>
                                                 <a class="btn btn-dark" th:href="@{'/admin/patientdetail/'+${p.id}}">详情</a>
-                                                <a class="btn btn-warning" th:href="@{'/admin/patientdel/'+${p.id}}">删除</a>
                                             </td>
                                         </tr>
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
-                            <div class="card-footer">
-                                <a th:href="@{/admin/patientadd}" class="btn btn-primary">添加病人</a>
                             </div>
                         </div>
                     </div>
@@ -117,18 +143,20 @@
 </div>
 
 
+
 <!-- jQuery -->
-<script th:src="@{/plugins/jquery/jquery.js}"></script>
+<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
 <!-- Bootstrap 4 -->
-<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.js}"></script>
+<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
 <!-- AdminLTE App -->
-<script th:src="@{/dist/js/adminlte.js}"></script>
+<script th:src="@{/dist/js/adminlte.min.js}"></script>
+<!-- AdminLTE for demo purposes -->
+<script th:src="@{/dist/js/demo.js}"></script>
 <!-- DataTables -->
 <script th:src="@{/plugins/datatables/jquery.dataTables.min.js}"></script>
 <script th:src="@{/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
 <script th:src="@{/plugins/datatables-responsive/js/dataTables.responsive.min.js}"></script>
 <script th:src="@{/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
-<!-- page script -->
 <script>
     $(function () {
         $('#table1').DataTable({

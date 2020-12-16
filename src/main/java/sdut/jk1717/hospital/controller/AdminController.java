@@ -1,5 +1,4 @@
 package sdut.jk1717.hospital.controller;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,19 +10,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sdut.jk1717.hospital.Util.DateUtil;
 import sdut.jk1717.hospital.Util.PwdUtil;
 import sdut.jk1717.hospital.po.Doctor;
-import sdut.jk1717.hospital.po.Drug;
-import sdut.jk1717.hospital.po.Examination;
 import sdut.jk1717.hospital.po.Patient;
 import sdut.jk1717.hospital.service.DoctorService;
 import sdut.jk1717.hospital.service.DrugService;
 import sdut.jk1717.hospital.service.ExaminationService;
 import sdut.jk1717.hospital.service.PatientService;
-
-import javax.print.Doc;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -115,5 +107,13 @@ public class AdminController {
             redirectAttributes.addFlashAttribute("message","删除失败");
         }
         return "redirect:/admin/doctor";
+    }
+    @GetMapping("/admin/doctordetail/{id}")
+    public String doctorDetail(@PathVariable("id") Long id , Model model){
+        Doctor doctor = doctorService.findById(id);
+        List<Patient> patients = patientService.findPatientsByDoctorId(id);
+        model.addAttribute("doctor",doctor);
+        model.addAttribute("patients",patients);
+        return "admin_doctor_detail.html";
     }
 }
