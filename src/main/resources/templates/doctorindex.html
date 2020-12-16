@@ -91,7 +91,8 @@
                                             <td th:text="${p.name}"></td>
                                             <td th:if="${p.bed}!=null" th:text="${p.bed.number}"></td>
                                             <td th:unless="${p.bed}!=null" th:text="未分配"></td>
-                                            <td th:text="${session.username}"></td>
+                                            <td th:unless="${p.doctor}!=null" th:text="未分配"></td>
+                                            <td th:if="${p.doctor}!=null" th:text="${p.doctor.name}"></td>
                                             <td th:text="${p.phone}"></td>
                                             <td>
                                                 <a th:href="@{'/doctor/patient/'+${p.id}}">

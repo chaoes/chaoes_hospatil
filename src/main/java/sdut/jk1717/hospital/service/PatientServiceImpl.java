@@ -41,4 +41,28 @@ public class PatientServiceImpl implements PatientService{
     public List<Patient> findAll() {
         return patientRepository.findAll();
     }
+
+    @Transactional
+    @Override
+    public Patient addOne(Patient patient) {
+        return patientRepository.save(patient);
+    }
+
+    @Transactional
+    @Override
+    public Patient update(Patient patient) {
+        return patientRepository.save(patient);
+    }
+
+    @Transactional
+    @Override
+    public boolean deleteById(Long id) {
+        try {
+            patientRepository.deleteById(id);
+        }catch (RuntimeException e){
+            System.out.println("删除id: " + id + "失败");
+            return false;
+        }
+        return true;
+    }
 }

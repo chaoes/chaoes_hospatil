@@ -66,6 +66,12 @@
         </div>
         <div class="content">
             <div class="container">
+                <row>
+                    <div class="alert alert-default-primary alert-dismissible" th:unless="${#strings.isEmpty(message)}">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h6 th:text="${message}"><i class="icon fas fa-ban"></i> 提示!</h6>
+                    </div>
+                </row>
                 <div class="row">
                     <div class="col-10">
                         <div class="card">
@@ -91,11 +97,11 @@
                                             <td th:text="${p.name}"></td>
                                             <td th:if="${p.bed}!=null" th:text="${p.bed.number}"></td>
                                             <td th:unless="${p.bed}!=null" th:text="未分配"></td>
-                                            <td th:text="${session.username}"></td>
+                                            <td th:unless="${p.doctor}!=null" th:text="未分配"></td>
+                                            <td th:if="${p.doctor}!=null" th:text="${p.doctor.name}"></td>
                                             <td th:text="${p.phone}"></td>
                                             <td>
                                                 <a class="btn btn-primary" th:href="@{'/admin/patientedit/'+${p.id}}">编辑</a>
-                                                <a class="btn btn-secondary" th:href="@{'/admin/patientadd/'+${p.id}}">添加</a>
                                                 <a class="btn btn-light" th:href="@{'/admin/patientset/'+${p.id}}">分配</a>
                                                 <a class="btn btn-dark" th:href="@{'/admin/patientdetail/'+${p.id}}">详情</a>
                                                 <a class="btn btn-warning" th:href="@{'/admin/patientdel/'+${p.id}}">删除</a>

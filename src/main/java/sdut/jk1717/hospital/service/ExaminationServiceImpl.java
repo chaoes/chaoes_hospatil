@@ -2,6 +2,7 @@ package sdut.jk1717.hospital.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import sdut.jk1717.hospital.dao.ExaminationRepository;
 import sdut.jk1717.hospital.po.Examination;
 import sdut.jk1717.hospital.po.Patient;
@@ -23,6 +24,7 @@ public class ExaminationServiceImpl implements ExaminationService{
         return examinationRepository.findAllByPatient_Id(id);
     }
 
+    @Transactional
     @Override
     public Examination save(Examination examination, Patient patient) {
         examination.setPatient(patient);

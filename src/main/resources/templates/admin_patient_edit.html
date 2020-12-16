@@ -71,27 +71,26 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-title">
-                                    添加医生
+                                    添加病人
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="card-text">
-                                    <form role="form" method="post" action="/admin/doctoradd">
+                                    <form role="form" method="post" th:action="@{/admin/patientedit}">
                                         <div class="form-group">
-                                            <label for="name">姓名</label>
-                                            <input class="form-control" type="text" required="required" name="name" id="name" placeholder="姓名">
+                                            <input class="form-control" th:value="${patient.id}" type="number" readonly="readonly" name="id" required="required" hidden="hidden">
                                         </div>
                                         <div class="form-group">
-                                            <label for="password">密码</label>
-                                            <input class="form-control" type="password" required="required" name="password" id="password" placeholder="密码">
+                                            <label for="name">姓名</label>
+                                            <input class="form-control" th:value="${patient.name}" type="text" required="required" name="name" id="name" placeholder="姓名">
                                         </div>
                                         <div class="form-group">
                                             <label for="phone">电话</label>
-                                            <input class="form-control" type="tel" required pattern="^(0|86|17951)?(13[0-9]|15[012356789]|17[0678]|18[0-9]|14[57])[0-9]{8}" name="phone" id="phone" placeholder="11位电话号码">
+                                            <input class="form-control" th:value="${patient.phone}" type="tel" required pattern="^(0|86|17951)?(13[0-9]|15[012356789]|17[0678]|18[0-9]|14[57])[0-9]{8}" name="phone" id="phone" placeholder="11位电话号码">
                                         </div>
                                         <div class="form-group">
                                             <label for="addr">地址</label>
-                                            <textarea name="addr" required="required" id="addr" class="form-control"></textarea>
+                                            <textarea name="addr" th:text="${patient.addr}" required="required" id="addr" class="form-control"></textarea>
                                         </div>
                                         <div class="form-group">
                                             <input class="form-control btn btn-primary" type="submit" value="提交">

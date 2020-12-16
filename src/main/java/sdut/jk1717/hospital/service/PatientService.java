@@ -17,4 +17,7 @@ public interface PatientService {
     Patient findById(Long id);
     long count();
     List<Patient> findAll();
+    Patient addOne(Patient patient);
+    Patient update(Patient patient);
+    boolean deleteById(Long id);
 }

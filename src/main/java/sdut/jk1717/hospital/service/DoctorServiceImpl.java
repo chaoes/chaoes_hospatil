@@ -39,6 +39,7 @@ public class DoctorServiceImpl implements DoctorService{
         return doctorRepository.findAll();
     }
 
+    @Transactional
     @Override
     public Doctor addOne(Doctor doctor) {
         if(!doctor.getPassword().isEmpty()){
@@ -52,17 +53,19 @@ public class DoctorServiceImpl implements DoctorService{
         return doctorRepository.findById(id).get();
     }
 
+    @Transactional
     @Override
     public Doctor update(Doctor doctor) {
         doctor.setUpdateDate(DateUtil.getTodayDate());
         return doctorRepository.save(doctor);
     }
 
+    @Transactional
     @Override
     public boolean deleteById(Long id) {
         try {
             doctorRepository.deleteById(id);
-        }catch (Exception e){
+        }catch (RuntimeException e){
             System.out.println("删除id:" + id + "失败");
             return false;
         }

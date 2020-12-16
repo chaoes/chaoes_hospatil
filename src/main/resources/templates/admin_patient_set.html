@@ -27,6 +27,7 @@
     <!-- DataTables -->
     <link rel="stylesheet" th:href="@{/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css}">
     <link rel="stylesheet" th:href="@{/plugins/datatables-responsive/css/responsive.bootstrap4.min.css}">
+    <link rel="stylesheet" th:href="@{/plugins/select2/css/select2.min.css}">
     <!-- Google Font: Source Sans Pro -->
     <link th:href="@{https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700}" rel="stylesheet">
 </head>
@@ -67,35 +68,56 @@
         <div class="content">
             <div class="container">
                 <div class="row">
-                    <div class="col-10">
+                    <div class="col-md-5 col-sm-10">
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-title">
-                                    添加医生
+                                    分配医生
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="card-text">
-                                    <form role="form" method="post" action="/admin/doctoradd">
+                                    <form role="form" method="post" th:action="'/admin/patientset/'+${patient.id}">
                                         <div class="form-group">
-                                            <label for="name">姓名</label>
-                                            <input class="form-control" type="text" required="required" name="name" id="name" placeholder="姓名">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="password">密码</label>
-                                            <input class="form-control" type="password" required="required" name="password" id="password" placeholder="密码">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="phone">电话</label>
-                                            <input class="form-control" type="tel" required pattern="^(0|86|17951)?(13[0-9]|15[012356789]|17[0678]|18[0-9]|14[57])[0-9]{8}" name="phone" id="phone" placeholder="11位电话号码">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="addr">地址</label>
-                                            <textarea name="addr" required="required" id="addr" class="form-control"></textarea>
+                                            <div class="select2-purple">
+                                                <label for="doctorid">分配医生</label>
+                                                <select name="doctorid" id="doctorid" class="form-control select2 select2-green" data-dropdown-css-class="select2-green" style="width: 100%;">
+                                                    <option th:each="d:${doctors}" th:value="${d.id}" th:text="${d.name}" th:selected="${doctor!=null&&d.id==doctor.id}"  ></option>
+                                                    <option value="0" th:text="不分配" th:selected="${doctor==null}"></option>
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <input class="form-control btn btn-primary" type="submit" value="提交">
                                         </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-sm-10">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    分配病床
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-text">
+                                    <form role="form" method="post" th:action="'/admin/patientset/'+${patient.id}">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <div class="select2-purple">
+                                                    <label for="bedid">分配床位</label>
+                                                    <select name="bedid" id="bedid" class="form-control select2 select2-green" data-dropdown-css-class="select2-green" style="width: 100%;">
+                                                        <option th:each="b:${beds}" th:value="${b.id}" th:text="${b.number}" th:selected="${bed!=null&&bed.id==b.id}" ></option>
+                                                        <option value="0" th:selected="${bed==null}" th:text="不分配"></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input class="form-control btn btn-primary" type="submit" value="提交">
+                                            </div>
                                     </form>
                                 </div>
                             </div>
@@ -122,5 +144,17 @@
 <script th:src="@{/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
 <script th:src="@{/plugins/datatables-responsive/js/dataTables.responsive.min.js}"></script>
 <script th:src="@{/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
+<script th:src="@{/plugins/select2/js/select2.full.min.js}"></script>
+<script>
+    $(function () {
+        //Initialize Select2 Elements
+        $('.select2').select2()
+
+        //Initialize Select2 Elements
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
+        })
+    });
+</script>
 </body>
 </html>

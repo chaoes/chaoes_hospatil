@@ -3,6 +3,7 @@ package sdut.jk1717.hospital.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import sdut.jk1717.hospital.dao.DrugRepository;
 import sdut.jk1717.hospital.po.Drug;
 import sdut.jk1717.hospital.po.Patient;
@@ -20,6 +21,8 @@ import java.util.List;
 public class DrugServiceImpl implements DrugService{
     @Autowired
     DrugRepository drugRepository;
+
+    @Transactional
     @Override
     public Drug save(Drug drug, Patient patient) {
         drug.setPatient(patient);
