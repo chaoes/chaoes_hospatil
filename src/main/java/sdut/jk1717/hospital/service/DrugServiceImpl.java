@@ -32,6 +32,16 @@ public class DrugServiceImpl implements DrugService{
         return drugRepository.findById(id).get();
     }
 
+    @Override
+    public List<Date> findDistinctDate(Long id) {
+        return drugRepository.findDistinctDate(id);
+    }
+
+    @Override
+    public List<Drug> findAllByDateAndPatient_Id(Date date, Long id) {
+        return drugRepository.findAllByCreatDateAndPatient_Id(date,id);
+    }
+
     @Transactional
     @Override
     public boolean deleteById(Long id) {

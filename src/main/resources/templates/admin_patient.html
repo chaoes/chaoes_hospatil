@@ -115,6 +115,7 @@
                                                 <a class="btn btn-light" th:href="@{'/admin/patientset/'+${p.id}}">分配</a>
                                                 <a class="btn btn-dark" th:href="@{'/admin/patientdetail/'+${p.id}}">详情</a>
                                                 <a class="btn btn-warning" th:href="@{'/admin/patientdel/'+${p.id}}">删除</a>
+                                                <a class="btn btn-warning" th:href="@{'/admin/patientreport/'+${p.id}}">账单</a>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -130,6 +131,7 @@
             </div>
         </div>
     </div>
+    <div th:insert="temp::footer"></div>
 </div>
 
 

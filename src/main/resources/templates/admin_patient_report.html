@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>医院住院部管理系统-医生</title>
+    <title>医院住院部管理系统-管理员</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -27,6 +27,7 @@
     <!-- DataTables -->
     <link rel="stylesheet" th:href="@{/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css}">
     <link rel="stylesheet" th:href="@{/plugins/datatables-responsive/css/responsive.bootstrap4.min.css}">
+    <link rel="stylesheet" th:href="@{/plugins/select2/css/select2.min.css}">
     <!-- Google Font: Source Sans Pro -->
     <link th:href="@{https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700}" rel="stylesheet">
 </head>
@@ -37,11 +38,22 @@
             <div class="collapse navbar-collapse order-3">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/doctor/index}">首页</a>
+                        <a class="nav-link" th:href="@{/admin/index}">首页</a>
                     </li>
-
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/doctor/patient}">患者</a>
+                        <a class="nav-link" th:href="@{/admin/patient}">患者</a>
+                    </li>
+                    <li  class="nav-item">
+                        <a class="nav-link" th:href="@{/admin/doctor}">医生</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/admin/drug}">药物</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/admin/exam}">检测</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/admin/bed}">床位</a>
                     </li>
 
 
@@ -66,88 +78,66 @@
         </div>
         <div class="content">
             <div class="container">
-            <div class="row">
-                <div class="col-10">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="card-title">
-                                我的病人
+                <div class="row">
+                    <div class="col-md-5 col-sm-10">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    生成账单
+                                </div>
                             </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-text">
-                                <table id="table1" class="table table-bordered table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th>姓名</th>
-                                        <th>床位</th>
-                                        <th>负责医生</th>
-                                        <th>电话</th>
-                                        <td>操作</td>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr th:each="p:${patients}">
-                                            <td th:text="${p.name}"></td>
-                                            <td th:if="${p.bed}!=null" th:text="${p.bed.number}"></td>
-                                            <td th:unless="${p.bed}!=null" th:text="未分配"></td>
-                                            <td th:unless="${p.doctor}!=null" th:text="未分配"></td>
-                                            <td th:if="${p.doctor}!=null" th:text="${p.doctor.name}"></td>
-                                            <td th:text="${p.phone}"></td>
-                                            <td>
-                                                <a th:href="@{'/doctor/patient/'+${p.id}}">
-                                                    <button class="btn-primary btn">
-                                                        <i class="fa fa-folder"></i>
-                                                    </button>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <div class="card-body">
+                                <div class="card-text">
+                                    <form role="form" method="post" th:action="'/admin/patientreport/'+${patient.id}">
+                                        <div class="form-group">
+                                            <div class="select2-purple">
+                                                <label for="date">选择日期</label>
+                                                <select name="date" id="date" class="form-control select2 select2-green" data-dropdown-css-class="select2-green" style="width: 100%;">
+                                                    <option th:each="d:${dates}" th:value="${#dates.format(d,'yyyy-MM-dd')}" th:text="${#dates.format(d,'yyyy-MM-dd')}" ></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control btn btn-primary" type="submit" value="生成一日账单">
+                                        </div>
+                                    </form>
+                                        <a style="width: 100%;" th:href="@{'/admin/patientreportall/'+${patient.id}}" class="btn btn-primary">生成全部账单</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
     </div>
     <div th:insert="temp::footer"></div>
 </div>
 
 
+
 <!-- jQuery -->
-<script th:src="@{/plugins/jquery/jquery.js}"></script>
+<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
 <!-- Bootstrap 4 -->
-<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.js}"></script>
+<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
 <!-- AdminLTE App -->
-<script th:src="@{/dist/js/adminlte.js}"></script>
+<script th:src="@{/dist/js/adminlte.min.js}"></script>
+<!-- AdminLTE for demo purposes -->
+<script th:src="@{/dist/js/demo.js}"></script>
 <!-- DataTables -->
 <script th:src="@{/plugins/datatables/jquery.dataTables.min.js}"></script>
 <script th:src="@{/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
 <script th:src="@{/plugins/datatables-responsive/js/dataTables.responsive.min.js}"></script>
 <script th:src="@{/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
-<!-- page script -->
+<script th:src="@{/plugins/select2/js/select2.full.min.js}"></script>
 <script>
     $(function () {
-        $('#table1').DataTable({
-            "paging": true,
-            "emptyTable": "您没有病人了",
-            "lengthChange": false,
-            "searching": true,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-            "search": "搜索",
-            "infoEmpty": "无记录",
-            "paginate": {
-                "first": "首页",
-                "previous": "上一页",
-                "next": "下一页",
-                "last": "尾页"
-            }
-        });
+        //Initialize Select2 Elements
+        $('.select2').select2()
+
+        //Initialize Select2 Elements
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
+        })
     });
 </script>
 </body>

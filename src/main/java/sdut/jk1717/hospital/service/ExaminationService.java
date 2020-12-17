@@ -21,4 +21,6 @@ public interface ExaminationService {
     Examination findById(Long id);
     Examination update(Examination examination);
     boolean deleteById(Long id);
+    List<Examination> findAllByDateAndPatient_Id(Date date,Long id);
+    List<Date> findDistinctDate(Long id);
 }

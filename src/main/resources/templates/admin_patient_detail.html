@@ -79,8 +79,8 @@
                     <div class="col-md-4 col-sm-10">
                         <div class="card">
                             <div class="card-header">
-                                <div class="card-title">
-                                    添加病人
+                                <div th:text="${patient.name}" class="card-title">
+                                    病人
                                 </div>
                             </div>
                             <div class="card-body">
@@ -106,10 +106,86 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-10 col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    药物
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-text">
+                                    <table id="table1" class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>名称</th>
+                                            <th>数量</th>
+                                            <th>价格</th>
+                                            <th>患者</th>
+                                            <td>创建时间</td>
+                                            <td>操作</td>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="d:${drugs}">
+                                            <td th:text="${d.drugname}"></td>
+                                            <td th:text="${d.number}"></td>
+                                            <td th:text="${d.price}"></td>
+                                            <td th:text="${d.patient.name}"></td>
+                                            <td th:text="${d.creatDate}"></td>
+                                            <td>
+                                                <a class="btn btn-primary" th:href="@{'/admin/drugedit/'+${d.id}}">编辑</a>
+                                                <a class="btn btn-warning" th:href="@{'/admin/drugdel/'+${d.id}}">删除</a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-10 col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    检测
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-text">
+                                    <table id="table1" class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>内容</th>
+                                            <th>价格</th>
+                                            <th>检测时间</th>
+                                            <td>创建时间</td>
+                                            <td>操作</td>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="e:${exams}">
+                                            <td th:text="${e.content}"></td>
+                                            <td th:text="${e.price}"></td>
+                                            <td th:text="${e.checkTime}"></td>
+                                            <td th:text="${e.creatTime}"></td>
+                                            <td>
+                                                <a class="btn btn-primary" th:href="@{'/admin/examedit/'+${e.id}}">编辑</a>
+                                                <a class="btn btn-warning" th:href="@{'/admin/examdel/'+${e.id}}">删除</a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
+    <div th:insert="temp::footer"></div>
 </div>
 
 

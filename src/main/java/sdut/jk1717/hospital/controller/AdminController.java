@@ -15,6 +15,7 @@ import sdut.jk1717.hospital.service.*;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @auther:chaoe
@@ -314,6 +315,46 @@ public class AdminController {
             redirectAttributes.addFlashAttribute("message","删除失败");
         }
         return "redirect:/admin/bed";
+    }
+    @GetMapping("/admin/patientdetail/{id}")
+    public  String patientDetail(@PathVariable("id") Long id,Model model){
+        Patient patient = patientService.findById(id);
+        List<Drug> drugs = drugService.findAllByPatient_Id(id);
+        List<Examination> examinations = examinationService.findAllByPatient_Id(id);
+        model.addAttribute("patient",patient);
+        model.addAttribute("drugs",drugs);
+        model.addAttribute("exams",examinations);
+        return "admin_patient_detail.html";
+    }
+    @GetMapping("/admin/patientreport/{id}")
+    public String patientReportPage(@PathVariable("id") Long id,Model model){
+        Patient patient = patientService.findById(id);
+        List<Date> dates1 = drugService.findDistinctDate(id);
+        List<Date> dates2 = examinationService.findDistinctDate(id);
+        dates1.addAll(dates2);
+        model.addAttribute("dates",dates1);
+        model.addAttribute("patient",patient);
+        return "admin_patient_report.html";
+    }
+    @PostMapping("/admin/patientreport/{id}")
+    public String patientReport(@PathVariable("id") Long id,Date date,Model model){
+        Patient patient = patientService.findById(id);
+        Double pricedrug;
+        Double priceExam;
+        List<Drug> drugs = drugService.findAllByDateAndPatient_Id(date,id);
+        List<Examination> examinations = examinationService.findAllByDateAndPatient_Id(date,id);
+        if(drugs.size()>0){
+            pricedrug=drugs.stream().collect(Collectors.summingDouble(Drug::getPrice));
+            model.addAttribute("drugs",drugs);
+            model.addAttribute("pricedrug",pricedrug);
+        }
+        if(examinations.size()>0){
+            priceExam = examinations.stream().collect(Collectors.summingDouble(Examination::getPrice));
+            model.addAttribute("exams",examinations);
+            model.addAttribute("priceexam",priceExam);
+        }
+        model.addAttribute("patient",patient);
+        return "report.html";
     }
 
 }

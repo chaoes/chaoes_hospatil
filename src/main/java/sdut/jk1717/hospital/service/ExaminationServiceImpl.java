@@ -46,6 +46,16 @@ public class ExaminationServiceImpl implements ExaminationService{
         return examinationRepository.findAll();
     }
 
+    @Override
+    public List<Date> findDistinctDate(Long id) {
+        return examinationRepository.findDistinctDate(id);
+    }
+
+    @Override
+    public List<Examination> findAllByDateAndPatient_Id(Date date, Long id) {
+        return examinationRepository.findAllByCreatTimeAndPatient_Id(date,id);
+    }
+
     @Transactional
     @Override
     public boolean deleteById(Long id) {

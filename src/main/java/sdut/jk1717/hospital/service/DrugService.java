@@ -21,4 +21,6 @@ public interface DrugService {
     Drug findById(Long id);
     Drug update(Drug drug);
     boolean deleteById(Long id);
+    List<Drug> findAllByDateAndPatient_Id(Date date,Long id);
+    List<Date> findDistinctDate(Long id);
 }
