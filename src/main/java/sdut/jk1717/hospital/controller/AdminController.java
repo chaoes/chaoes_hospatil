@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sdut.jk1717.hospital.Util.DateUtil;
 import sdut.jk1717.hospital.Util.PwdUtil;
-import sdut.jk1717.hospital.po.Bed;
-import sdut.jk1717.hospital.po.Doctor;
-import sdut.jk1717.hospital.po.Patient;
+import sdut.jk1717.hospital.po.*;
 import sdut.jk1717.hospital.service.*;
 
 import java.text.SimpleDateFormat;
@@ -41,10 +39,12 @@ public class AdminController {
         long doctorCount = doctorService.count();
         int newDrugCount = drugService.countAllByDate(DateUtil.getTodayDate());
         int newExamCount = examinationService.countAllByDate(DateUtil.getTodayDate());
+        long bedCount = bedService.count();
         model.addAttribute("patientCount",patientCount);
         model.addAttribute("doctorCount",doctorCount);
         model.addAttribute("drugCount",newDrugCount);
         model.addAttribute("examCount",newExamCount);
+        model.addAttribute("bedCount",bedCount);
         return "/admin_index.html";
     }
     @GetMapping("/admin/doctor")
@@ -199,4 +199,23 @@ public class AdminController {
         }
         return "redirect:/admin/patient";
     }
+    @GetMapping("/admin/drug")
+    public String drug(Model model){
+        List<Drug> drugs = drugService.findAll();
+        model.addAttribute("drugs",drugs);
+        return "admin_drug.html";
+    }
+    @GetMapping("/admin/exam")
+    public String exam(Model model){
+        List<Examination> examinations = examinationService.findAll();
+        model.addAttribute("exams",examinations);
+        return "admin_exam.html";
+    }
+    @GetMapping("/admin/bed")
+    public String bed(Model model){
+        List<Bed> beds = bedService.findAll();
+        model.addAttribute("beds",beds);
+        return "admin_bed.html";
+    }
+
 }

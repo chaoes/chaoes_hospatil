@@ -37,9 +37,9 @@ public class Patient implements Serializable {
     @ManyToOne
     private Doctor doctor;
     @JsonIgnore
-    @OneToMany(mappedBy = "patient")
+    @OneToMany(mappedBy = "patient",cascade=CascadeType.REMOVE)
     private Set<Drug> drugs = new HashSet<>();
     @JsonIgnore
-    @OneToMany(mappedBy = "patient")
+    @OneToMany(mappedBy = "patient",cascade=CascadeType.REMOVE)
     private Set<Examination> examinations = new HashSet<>();
 }

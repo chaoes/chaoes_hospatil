@@ -22,6 +22,11 @@ public class DrugServiceImpl implements DrugService{
     @Autowired
     DrugRepository drugRepository;
 
+    @Override
+    public List<Drug> findAll() {
+        return drugRepository.findAll();
+    }
+
     @Transactional
     @Override
     public Drug save(Drug drug, Patient patient) {

@@ -65,73 +65,40 @@
         <div class="content-header">
         </div>
         <div class="content">
-            <div class="container-fluid"></div>
-            <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <!-- small box -->
-                    <div class="small-box bg-yellow">
-                        <div class="inner">
-                            <h3 th:text="${patientCount}">-1</h3>
-                            <p>患者数量</p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-10">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    编辑药单
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-text">
+                                    <form role="form" method="post" action="/admin/drugedit">
+                                        <div class="form-group">
+                                            <input th:value="${drug.id}" class="form-control" type="number" required="required" name="id" id="id" readonly="readonly" hidden="hidden">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name">名称</label>
+                                            <input th:value="${drug.drugname}" class="form-control" type="text" required="required" name="drugname" id="name" placeholder="姓名">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="number">数目</label>
+                                            <input th:value="${drug.number}" class="form-control" type="number" name="number" id="number">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="phone">价格</label>
+                                            <input th:value="${drug.price}" class="form-control" type="number" required="required" name="phone" id="phone" placeholder="11位电话号码">
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control btn btn-primary" type="submit" value="提交">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                        <div class="icon">
-                            <i class="ion ion-android-sad"></i>
-                        </div>
-                        <a th:href="@{/admin/patient}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <!-- small box -->
-                    <div class="small-box bg-info">
-                        <div class="inner">
-                            <h3 th:text="${doctorCount}">-1</h3>
-                            <p>医生数量</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-android-happy"></i>
-                        </div>
-                        <a th:href="@{/admin/doctor}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <!-- small box -->
-                    <div class="small-box bg-red">
-                        <div class="inner">
-                            <h3 th:text="${drugCount}">-1</h3>
-                            <p>今日药单</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-medkit"></i>
-                        </div>
-                        <a th:href="@{/admin/drug}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <!-- small box -->
-                    <div class="small-box bg-blue">
-                        <div class="inner">
-                            <h3 th:text="${examCount}">-1</h3>
-                            <p>今日检测</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-heart"></i>
-                        </div>
-                        <a th:href="@{/admin/exam}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6 col-md-3">
-                    <!-- small box -->
-                    <div class="small-box bg-green">
-                        <div class="inner">
-                            <h3 th:text="${bedCount}">-1</h3>
-                            <p>床位数量</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-bed-outline"></i>
-                        </div>
-                        <a th:href="@{/admin/bed}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>

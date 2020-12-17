@@ -14,4 +14,5 @@ public interface BedService {
     Bed findById(Long id);
     List<Bed> findAll();
     List<Bed> findAllUnLive();
+    long count();
 }

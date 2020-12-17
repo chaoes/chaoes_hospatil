@@ -40,4 +40,9 @@ public class ExaminationServiceImpl implements ExaminationService{
     public int countAllByDate(Date date) {
         return examinationRepository.countAllByCreatTime(date);
     }
+
+    @Override
+    public List<Examination> findAll() {
+        return examinationRepository.findAll();
+    }
 }

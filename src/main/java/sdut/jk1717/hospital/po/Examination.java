@@ -24,7 +24,7 @@ public class Examination implements Serializable {
     private String content;
     private Integer price;
     private boolean isfinished=false;
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date checkTime;
     @Temporal(TemporalType.DATE)
     private Date creatTime = new Date(System.currentTimeMillis());

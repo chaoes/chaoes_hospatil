@@ -17,4 +17,5 @@ public interface ExaminationService {
     Examination save(Examination examination, Patient patient);
     List<Examination> findAllByDate(Date date);
     int countAllByDate(Date date);
+    List<Examination> findAll();
 }

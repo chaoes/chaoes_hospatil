@@ -77,7 +77,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-title">
-                                    药物
+                                    检测
                                 </div>
                             </div>
                             <div class="card-body">
@@ -85,27 +85,26 @@
                                     <table id="table1" class="table table-bordered table-striped">
                                         <thead>
                                         <tr>
-                                            <th>名称</th>
-                                            <th>数量</th>
-                                            <th>价格</th>
+                                            <th>床位号</th>
                                             <th>患者</th>
-                                            <td>创建时间</td>
-                                            <td>操作</td>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="d:${drugs}">
-                                            <td th:text="${d.drugname}"></td>
-                                            <td th:text="${d.number}"></td>
-                                            <td th:text="${d.price}"></td>
-                                            <td th:text="${d.patient.name}"></td>
-                                            <td th:text="${d.creatDate}"></td>
+                                        <tr th:each="b:${beds}">
+                                            <td th:text="${b.number}"></td>
+                                            <td th:if="${b.patient}" th:text="${b.patient.name}"></td>
+                                            <td th:unless="${b.patient}" th:text="无"></td>
                                             <td>
-                                                <a class="btn btn-primary" th:href="@{'/admin/drugedit/'+${d.id}}">编辑</a>
-                                                <a class="btn btn-warning" th:href="@{'/admin/drugdel/'+${d.id}}">删除</a>
+                                                <a class="btn btn-primary" th:href="@{'/admin/bededit/'+${b.id}}">编辑</a>
+                                                <a class= th:href="@{'/admin/beddel/'+${b.id}}">
+                                                    <input class="btn btn-warning" type="button" value="删除" th:disabled="${b.patient}">
+                                                </a>
                                             </td>
                                         </tr>
                                         </tbody>
+                                        <tfoot>
+                                        <a th:href="@{/admin/bedadd}" class="btn btn-primary">添加床位</a>
+                                        </tfoot>
                                     </table>
                                 </div>
                             </div>

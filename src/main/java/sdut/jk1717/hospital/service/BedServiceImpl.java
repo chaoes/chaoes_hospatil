@@ -23,6 +23,11 @@ public class BedServiceImpl implements BedService{
     }
 
     @Override
+    public long count() {
+        return bedRepository.count();
+    }
+
+    @Override
     public List<Bed> findAll() {
         return bedRepository.findAll();
     }
