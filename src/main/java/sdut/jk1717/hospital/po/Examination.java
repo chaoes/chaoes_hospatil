@@ -1,7 +1,9 @@
 package sdut.jk1717.hospital.po;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -15,14 +17,15 @@ import java.util.Date;
 
 @Entity
 @Table(name = "examination")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class Examination implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
     private String content;
-    private Integer price;
+    private Float price;
     private boolean isfinished=false;
     @Temporal(TemporalType.DATE)
     private Date checkTime;

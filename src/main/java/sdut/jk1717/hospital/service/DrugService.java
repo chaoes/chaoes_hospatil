@@ -18,4 +18,7 @@ public interface DrugService {
     List<Drug> findAllByDate(Date date);
     int countAllByDate(Date date);
     List<Drug> findAll();
+    Drug findById(Long id);
+    Drug update(Drug drug);
+    boolean deleteById(Long id);
 }

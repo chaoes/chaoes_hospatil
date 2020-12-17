@@ -27,6 +27,29 @@ public class DrugServiceImpl implements DrugService{
         return drugRepository.findAll();
     }
 
+    @Override
+    public Drug findById(Long id) {
+        return drugRepository.findById(id).get();
+    }
+
+    @Transactional
+    @Override
+    public boolean deleteById(Long id) {
+        try{
+            drugRepository.deleteById(id);
+        }catch (RuntimeException e){
+            System.out.println(e);
+            return false;
+        }
+        return true;
+    }
+
+    @Transactional
+    @Override
+    public Drug update(Drug drug) {
+        return drugRepository.save(drug);
+    }
+
     @Transactional
     @Override
     public Drug save(Drug drug, Patient patient) {

@@ -18,4 +18,7 @@ public interface ExaminationService {
     List<Examination> findAllByDate(Date date);
     int countAllByDate(Date date);
     List<Examination> findAll();
+    Examination findById(Long id);
+    Examination update(Examination examination);
+    boolean deleteById(Long id);
 }

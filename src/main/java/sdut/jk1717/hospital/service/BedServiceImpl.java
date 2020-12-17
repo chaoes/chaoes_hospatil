@@ -2,6 +2,7 @@ package sdut.jk1717.hospital.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import sdut.jk1717.hospital.dao.BedRepository;
 import sdut.jk1717.hospital.po.Bed;
 
@@ -25,6 +26,30 @@ public class BedServiceImpl implements BedService{
     @Override
     public long count() {
         return bedRepository.count();
+    }
+
+    @Transactional
+    @Override
+    public boolean deleteById(Long id) {
+        try {
+            bedRepository.deleteById(id);
+        }catch (RuntimeException e){
+            System.out.println(e);
+            return false;
+        }
+        return true;
+    }
+
+    @Transactional
+    @Override
+    public Bed addOne(Bed bed) {
+        return bedRepository.save(bed);
+    }
+
+    @Transactional
+    @Override
+    public Bed update(Bed bed) {
+        return bedRepository.save(bed);
     }
 
     @Override

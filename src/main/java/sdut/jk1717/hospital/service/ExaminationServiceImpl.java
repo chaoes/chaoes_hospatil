@@ -45,4 +45,27 @@ public class ExaminationServiceImpl implements ExaminationService{
     public List<Examination> findAll() {
         return examinationRepository.findAll();
     }
+
+    @Transactional
+    @Override
+    public boolean deleteById(Long id) {
+        try {
+            examinationRepository.deleteById(id);
+        }catch (RuntimeException e){
+            System.out.println(e);
+            return false;
+        }
+        return true;
+    }
+
+    @Transactional
+    @Override
+    public Examination update(Examination examination) {
+        return examinationRepository.save(examination);
+    }
+
+    @Override
+    public Examination findById(Long id) {
+        return examinationRepository.findById(id).get();
+    }
 }

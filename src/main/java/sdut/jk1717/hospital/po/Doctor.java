@@ -2,7 +2,9 @@ package sdut.jk1717.hospital.po;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
@@ -16,7 +18,8 @@ import java.util.*;
 
 @Entity
 @Table(name = "doctor")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class Doctor implements Serializable {
     @Id

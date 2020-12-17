@@ -12,6 +12,7 @@ import sdut.jk1717.hospital.Util.PwdUtil;
 import sdut.jk1717.hospital.po.*;
 import sdut.jk1717.hospital.service.*;
 
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -191,7 +192,7 @@ public class AdminController {
             }else {
                 patient.setBed(null);
             }
-        }else return "error";
+        }else return "/error";
         if(patientService.update(patient)!=null){
             redirectAttributes.addFlashAttribute("message","分配成功");
         }else {
@@ -216,6 +217,103 @@ public class AdminController {
         List<Bed> beds = bedService.findAll();
         model.addAttribute("beds",beds);
         return "admin_bed.html";
+    }
+    @GetMapping("/admin/drugedit/{id}")
+    public String drugEditPage(@PathVariable("id") Long id,Model model){
+        Drug drug = drugService.findById(id);
+        model.addAttribute(drug);
+        return "admin_drug_edit.html";
+    }
+    @PostMapping("/admin/drugedit")
+    public String drugEdit(Long id,String drugname,Integer number,Float price,RedirectAttributes redirectAttributes){
+        Drug drug = drugService.findById(id);
+        drug.setDrugname(drugname);
+        drug.setNumber(number);
+        drug.setPrice(price);
+        if(drugService.update(drug)!=null){
+            redirectAttributes.addFlashAttribute("message","修改成功");
+        }else {
+            redirectAttributes.addFlashAttribute("message","修改失败");
+        }
+        return "redirect:/admin/drug";
+    }
+    @GetMapping("/admin/examedit/{id}")
+    public String examEditPage(@PathVariable("id") Long id,Model model){
+        Examination examination = examinationService.findById(id);
+        model.addAttribute("exam",examination);
+        return "admin_exam_edit.html";
+    }
+    @PostMapping("/admin/examedit")
+    public String examEdit(Long id, String content, Date checkdate, Float price,RedirectAttributes redirectAttributes){
+        Examination examination = examinationService.findById(id);
+        examination.setContent(content);
+        examination.setCheckTime(checkdate);
+        examination.setPrice(price);
+        if(examinationService.update(examination)!=null){
+            redirectAttributes.addFlashAttribute("message","修改成功");
+        }else {
+            redirectAttributes.addFlashAttribute("message","修改失败");
+        }
+        return "redirect:/admin/exam";
+    }
+    @GetMapping("/admin/drugdel/{id}")
+    public String drugDel(@PathVariable("id") Long id,RedirectAttributes redirectAttributes){
+        if(drugService.deleteById(id)){
+            redirectAttributes.addFlashAttribute("message","删除成功");
+        }else {
+            redirectAttributes.addFlashAttribute("message","删除失败");
+        }
+        return "redirect:/admin/drug";
+    }
+    @GetMapping("/admin/examdel/{id}")
+    public String StringexamDel(@PathVariable("id") Long id,RedirectAttributes redirectAttributes){
+        if(examinationService.deleteById(id)){
+            redirectAttributes.addFlashAttribute("message","删除成功");
+        }else {
+            redirectAttributes.addFlashAttribute("message","删除失败");
+        }
+        return "redirect:/admin/exam";
+    }
+    @GetMapping("admin/bedadd")
+    public String bedAddPage(){
+        return "admin_bed_add.html";
+    }
+    @PostMapping("admin/bedadd")
+    public String bedAdd(Integer number,RedirectAttributes redirectAttributes){
+        Bed bed = new Bed();
+        bed.setNumber(number);
+        if(bedService.addOne(bed)!=null){
+            redirectAttributes.addFlashAttribute("message","添加成功");
+        }else {
+            redirectAttributes.addFlashAttribute("message","添加成功");
+        }
+        return "redirect:/admin/bed";
+    }
+    @GetMapping("/admin/bededit/{id}")
+    public String bedEditPage(@PathVariable("id") Long id,Model model){
+        Bed bed = bedService.findById(id);
+        model.addAttribute("bed",bed);
+        return "admin_bed_edit.html";
+    }
+    @PostMapping("/admin/bededit")
+    public String bedEdit(Long id,Integer number,RedirectAttributes redirectAttributes){
+        Bed bed = bedService.findById(id);
+        bed.setNumber(number);
+        if(bedService.update(bed)!=null){
+            redirectAttributes.addFlashAttribute("message","修改成功");
+        }else {
+            redirectAttributes.addFlashAttribute("message","修改失败");
+        }
+        return "redirect:/admin/bed";
+    }
+    @GetMapping("/admin/beddel/{id}")
+    public String bedDel(@PathVariable("id")Long id,RedirectAttributes redirectAttributes){
+        if(bedService.deleteById(id)){
+            redirectAttributes.addFlashAttribute("message","删除成功");
+        }else {
+            redirectAttributes.addFlashAttribute("message","删除失败");
+        }
+        return "redirect:/admin/bed";
     }
 
 }

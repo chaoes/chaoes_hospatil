@@ -15,4 +15,7 @@ public interface BedService {
     List<Bed> findAll();
     List<Bed> findAllUnLive();
     long count();
+    Bed addOne(Bed bed);
+    Bed update(Bed bed);
+    boolean deleteById(Long id);
 }

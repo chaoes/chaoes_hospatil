@@ -37,11 +37,22 @@
             <div class="collapse navbar-collapse order-3">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a th:href="@{/admin/index}">首页</a>
+                        <a class="nav-link" th:href="@{/admin/index}">首页</a>
                     </li>
-
                     <li class="nav-item">
-
+                        <a class="nav-link" th:href="@{/admin/patient}">患者</a>
+                    </li>
+                    <li  class="nav-item">
+                        <a class="nav-link" th:href="@{/admin/doctor}">医生</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/admin/drug}">药物</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/admin/exam}">检测</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/admin/bed}">床位</a>
                     </li>
 
 
@@ -52,10 +63,10 @@
             </div>
             <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
                 <li class="nav-link" >
-                    <a href="/doctor/index" th:text="${session.username}"></a>
+                    <a class="nav-link" href="/doctor/index" th:text="${session.username}"></a>
                 </li>
                 <li class="nav-link" >
-                    <a href="/logout" th:text="'注销'"></a>
+                    <a class="nav-link" href="/logout" th:text="'注销'"></a>
                 </li>
             </ul>
         </div>
@@ -90,7 +101,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="phone">电话</label>
-                                            <input th:value="${doctor.phone}" class="form-control" type="tel" required pattern="^(0|86|17951)?(13[0-9]|15[012356789]|17[0678]|18[0-9]|14[57])[0-9]{8}" name="phone" id="phone" placeholder="11位电话号码">
+                                            <input th:value="${doctor.phone}" class="form-control" type="tel" required pattern="^(0|86|17951)?(13[0-9]|15[012356789]|17[0678]|18[0-9]|14[57]|19[0-9])[0-9]{8}" name="phone" id="phone" placeholder="11位电话号码">
                                         </div>
                                         <div class="form-group">
                                             <label for="addr">地址</label>

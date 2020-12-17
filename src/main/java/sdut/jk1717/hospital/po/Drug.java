@@ -1,7 +1,9 @@
 package sdut.jk1717.hospital.po;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,7 +16,8 @@ import java.util.Date;
 
 @Entity
 @Table(name = "drug")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class Drug implements Serializable {
     @Id
@@ -22,7 +25,7 @@ public class Drug implements Serializable {
     private Long id;
     private String drugname;
     private Integer number;
-    private Integer price;
+    private Float price;
     private boolean isfinished=false;
     @Temporal(TemporalType.DATE)
     private Date creatDate = new Date(System.currentTimeMillis());

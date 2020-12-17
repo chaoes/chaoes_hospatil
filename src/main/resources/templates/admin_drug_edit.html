@@ -37,13 +37,23 @@
             <div class="collapse navbar-collapse order-3">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a th:href="@{/admin/index}">首页</a>
+                        <a class="nav-link" th:href="@{/admin/index}">首页</a>
                     </li>
-
                     <li class="nav-item">
-
+                        <a class="nav-link" th:href="@{/admin/patient}">患者</a>
                     </li>
-
+                    <li  class="nav-item">
+                        <a class="nav-link" th:href="@{/admin/doctor}">医生</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/admin/drug}">药物</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/admin/exam}">检测</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/admin/bed}">床位</a>
+                    </li>
 
 
 
@@ -52,10 +62,10 @@
             </div>
             <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
                 <li class="nav-link" >
-                    <a href="/doctor/index" th:text="${session.username}"></a>
+                    <a class="nav-link" href="/doctor/index" th:text="${session.username}"></a>
                 </li>
                 <li class="nav-link" >
-                    <a href="/logout" th:text="'注销'"></a>
+                    <a class="nav-link" href="/logout" th:text="'注销'"></a>
                 </li>
             </ul>
         </div>
@@ -82,15 +92,15 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="name">名称</label>
-                                            <input th:value="${drug.drugname}" class="form-control" type="text" required="required" name="drugname" id="name" placeholder="姓名">
+                                            <input th:value="${drug.drugname}" class="form-control" type="text" required="required" name="drugname" id="name" placeholder="名称">
                                         </div>
                                         <div class="form-group">
                                             <label for="number">数目</label>
-                                            <input th:value="${drug.number}" class="form-control" type="number" name="number" id="number">
+                                            <input th:value="${drug.number}" min="1" class="form-control" type="number" name="number" id="number" placeholder="数目" required="required">
                                         </div>
                                         <div class="form-group">
-                                            <label for="phone">价格</label>
-                                            <input th:value="${drug.price}" class="form-control" type="number" required="required" name="phone" id="phone" placeholder="11位电话号码">
+                                            <label for="price">价格</label>
+                                            <input th:value="${drug.price}" step="0.01" class="form-control" type="number" required="required" name="price" id="price" placeholder="价格">
                                         </div>
                                         <div class="form-group">
                                             <input class="form-control btn btn-primary" type="submit" value="提交">

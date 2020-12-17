@@ -3,6 +3,7 @@ package sdut.jk1717.hospital.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import sdut.jk1717.hospital.Util.DateUtil;
 import sdut.jk1717.hospital.dao.DrugRepository;
 import sdut.jk1717.hospital.dao.PatientRepository;
 import sdut.jk1717.hospital.po.Doctor;
@@ -51,6 +52,7 @@ public class PatientServiceImpl implements PatientService{
     @Transactional
     @Override
     public Patient update(Patient patient) {
+        patient.setUpdateDate(DateUtil.getTodayDate());
         return patientRepository.save(patient);
     }
 

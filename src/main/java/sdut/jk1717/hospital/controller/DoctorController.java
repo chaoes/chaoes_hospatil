@@ -71,7 +71,7 @@ public class DoctorController {
         return "/doctor_patient_drug.html";
     }
     @PostMapping("/doctor/adddrug")
-    public String drugAdd(Long patientid, String drugname, Integer number, Integer price, RedirectAttributes redirectAttributes){
+    public String drugAdd(Long patientid, String drugname, Integer number, Float price, RedirectAttributes redirectAttributes){
         Patient patient = patientService.findById(patientid);
         Drug drug = new Drug();
         drug.setPatient(patient);
@@ -92,7 +92,7 @@ public class DoctorController {
         return "doctor_patient_exam";
     }
     @PostMapping("/doctor/addexam")
-    public String examAdd(Long patientid, String content, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date checkdate, Integer price, RedirectAttributes redirectAttributes){
+    public String examAdd(Long patientid, String content, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date checkdate,Float price, RedirectAttributes redirectAttributes){
         Patient patient = patientService.findById(patientid);
         Examination examination = new Examination();
         examination.setPatient(patient);

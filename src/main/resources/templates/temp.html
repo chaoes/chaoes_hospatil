@@ -37,13 +37,23 @@
             <div class="collapse navbar-collapse order-3">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a th:href="@{/doctor/index}">首页</a>
+                        <a class="nav-link" th:href="@{/admin/index}">首页</a>
                     </li>
-
                     <li class="nav-item">
-
+                        <a class="nav-link" th:href="@{/admin/patient}">患者</a>
                     </li>
-
+                    <li  class="nav-item">
+                        <a class="nav-link" th:href="@{/admin/doctor}">医生</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/admin/drug}">药物</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/admin/exam}">检测</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/admin/bed}">床位</a>
+                    </li>
 
 
 
@@ -52,9 +62,9 @@
             </div>
             <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
                 <li class="nav-link" >
-                    <a href="/doctor/index" th:text="${session.username}"></a>
+                    <a class="nav-link" href="/doctor/index" th:text="${session.username}"></a>
                 </li>
-                <li class="nav-link" >
+                <li class="nav-link">
                     <a href="/logout" th:text="'注销'"></a>
                 </li>
             </ul>
@@ -85,6 +95,13 @@
             </div>
         </div>
     </div>
+    <footer th:fragment="footer" class="main-footer">
+        <div class="float-right d-none d-sm-block">
+            <b>Version</b> 1.0
+        </div>
+        <strong>Copyright &copy; 2020 <a th:href="@{https://github.com/chaoes/chaoes_hospatil}">医院住院管理系统</a>.</strong> All rights
+        reserved.
+    </footer>
 </div>
 
 
