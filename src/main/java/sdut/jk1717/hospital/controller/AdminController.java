@@ -353,6 +353,7 @@ public class AdminController {
             model.addAttribute("exams",examinations);
             model.addAttribute("priceexam",priceExam);
         }
+        model.addAttribute("date",date);
         model.addAttribute("patient",patient);
         return "report.html";
     }

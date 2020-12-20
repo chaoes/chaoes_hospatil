@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title th:text="${patient.name}">。。。</title>
+    <title th:text="${patient.name}+'账单'">。。。</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -32,7 +32,8 @@
 </head>
 <body class="hold-transition layout-top-nav">
 <div class="wrapper">
-
+<H3 th:text="${patient.name}+'的账单'"></H3>
+    <h4 th:if="${date}" th:text="${#dates.format(date,'yyyy-MM-dd')}"></h4>
 
 
 </div>
