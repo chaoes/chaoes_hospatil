@@ -357,5 +357,25 @@ public class AdminController {
         model.addAttribute("patient",patient);
         return "report.html";
     }
+    @RequestMapping("/admin/patientreportall/{id}")
+    public String patientReportAll(@PathVariable Long id,Model model){
+        Patient patient = patientService.findById(id);
+        Double pricedrug;
+        Double priceExam;
+        List<Drug> drugs = drugService.findAllByPatient_Id(id);
+        List<Examination> examinations = examinationService.findAllByPatient_Id(id);
+        if(drugs.size()>0){
+            pricedrug=drugs.stream().collect(Collectors.summingDouble(Drug::getPrice));
+            model.addAttribute("drugs",drugs);
+            model.addAttribute("pricedrug",pricedrug);
+        }
+        if(examinations.size()>0){
+            priceExam = examinations.stream().collect(Collectors.summingDouble(Examination::getPrice));
+            model.addAttribute("exams",examinations);
+            model.addAttribute("priceexam",priceExam);
+        }
+        model.addAttribute("patient",patient);
+        return "report.html";
+    }
 
 }
