@@ -193,7 +193,7 @@ public class AdminController {
             }else {
                 patient.setBed(null);
             }
-        }else return "error";
+        }else return "redirect:/admin/patient";
         if(patientService.update(patient)!=null){
             redirectAttributes.addFlashAttribute("message","分配成功");
         }else {

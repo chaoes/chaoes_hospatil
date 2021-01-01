@@ -42,7 +42,7 @@ public class DoctorController {
         String name = httpServletRequest.getSession().getAttribute("username").toString();
         Doctor doctor = doctorService.findByName(name);
         model.addAttribute("patients",patientService.findPatientsByDoctorId(doctor.getId()));
-        return "/doctorindex.html";
+        return "doctorindex.html";
     }
     @GetMapping("/doctor/patient/{id}")
     public String patient(@PathVariable("id") Long id, Model model){
@@ -52,7 +52,7 @@ public class DoctorController {
         model.addAttribute("drugs",drugs);
         model.addAttribute("exams",examinations);
         model.addAttribute("patient",patient);
-        return "/doctor_patient.html";
+        return "doctor_patient.html";
     }
     @GetMapping("/doctor/patient/adddrug/{id}")
     public String patientAddDrug(Long id){
@@ -68,7 +68,7 @@ public class DoctorController {
     public String drugAddPage(@PathVariable("id") Long id, Model model){
         Patient patient = patientService.findById(id);
         model.addAttribute("patient",patient);
-        return "/doctor_patient_drug.html";
+        return "doctor_patient_drug.html";
     }
     @PostMapping("/doctor/adddrug")
     public String drugAdd(Long patientid, String drugname, Integer number, Float price, RedirectAttributes redirectAttributes){
