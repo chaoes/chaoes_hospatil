@@ -27,7 +27,7 @@ public class LoginController {
     private AdministratorService administratorService;
     @GetMapping("/login")
     public String loginPage(){
-        return "/login.html";
+        return "login.html";
     }
     @PostMapping("/login")
     public String login(String username, String password, String usertype, Model model, HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes){

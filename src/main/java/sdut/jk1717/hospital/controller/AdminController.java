@@ -47,7 +47,7 @@ public class AdminController {
         model.addAttribute("drugCount",newDrugCount);
         model.addAttribute("examCount",newExamCount);
         model.addAttribute("bedCount",bedCount);
-        return "/admin_index.html";
+        return "admin_index.html";
     }
     @GetMapping("/admin/doctor")
     public String doctorList(Model model){
@@ -193,7 +193,7 @@ public class AdminController {
             }else {
                 patient.setBed(null);
             }
-        }else return "/error";
+        }else return "error";
         if(patientService.update(patient)!=null){
             redirectAttributes.addFlashAttribute("message","分配成功");
         }else {

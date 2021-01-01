@@ -13,6 +13,6 @@ public class TmepController {
     @RequestMapping("/temp")
     public String hello(HttpSession session){
         System.out.println(session.getAttribute("username"));
-        return "/temp.html";
+        return "temp.html";
     }
 }
